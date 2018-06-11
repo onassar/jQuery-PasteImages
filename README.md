@@ -1,4 +1,4 @@
-# jQuery-Image-Paste-Event
+# jQuery Image PasteEvent
 jQuery image paste helper class to normalize how to listen for image pasting.  
 Pretty straightforward: just include the JS file, and then listen for the `custom/image/paste` event.
 
