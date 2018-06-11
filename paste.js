@@ -2,7 +2,7 @@
 /**
  * jQuery Paste Helper Class
  * 
- * @author  Oliver Nassar <onassar@gmail.com>
+ * @author  Oliver Nassar <oliver@getstencil.com>
  * @see     https://caniuse.com/#feat=clipboard
  * @see     https://ourcodeworld.com/articles/read/491/how-to-retrieve-images-from-the-clipboard-with-javascript-in-the-browser
  * @see     https://www.sitepoint.com/jquery-custom-events/
