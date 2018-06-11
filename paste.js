@@ -1,6 +1,10 @@
 
 /**
- * jQuery Paste Helper Class
+ * jQuery Paste Image
+ * 
+ * Helper class for listening for the paste event on the document, extracting
+ * out any possible blobs that were pasted in, and then triggering a custom
+ * event handler with those blobs.
  * 
  * @author  Oliver Nassar <oliver@getstencil.com>
  * @see     https://caniuse.com/#feat=clipboard
@@ -9,8 +13,8 @@
  * @note    Doesn't currently work with Safari. I believe this is related to
  *          limitations with accessing clipboardData
  * @example
- *          $('html').on({
- *              'custom/image/paste': function(event, blobs) {
+ *          $(document).on({
+ *              'custom/paste/images': function(event, blobs) {
  *              }
  *          });
  */
@@ -97,16 +101,17 @@
     };
 
     /**
-     * Listen for paste on html document
+     * Listen for paste on the document
      * 
      */
-    $('html').on({
+    $(document).on({
         'paste': function(event) {
             if (__validBrowser(event) === true) {
                 if (__validPaste(event) === true) {
                     var blobs = __getBlobs(event);
                     if (blobs.length > 0) {
-                        $(this).triggerHandler('custom/image/paste', [blobs]);
+                        var eventType = 'custom/paste/images';
+                        $(document).triggerHandler(eventType, [blobs]);
                     }
                 }
             }
