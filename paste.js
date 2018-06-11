@@ -1,6 +1,6 @@
 
 /**
- * jQuery Paste Image
+ * jQuery Paste Images
  * 
  * Helper class for listening for the paste event on the document, extracting
  * out any possible blobs that were pasted in, and then triggering a custom
