@@ -10,7 +10,7 @@
  *          limitations with accessing clipboardData
  * @example
  *          $('html').on({
- *              'custom/paste': function(event, blobs) {
+ *              'custom/image/paste': function(event, blobs) {
  *              }
  *          });
  */
@@ -31,13 +31,13 @@
             blob;
         for (index in items) {
             item = items[index];
-            if (item.kind === undefined) {
+            if (item.kind === undefined || item.kind === null) {
                 continue;
             }
             if (item.kind.toLowerCase() !== 'file') {
                 continue;
             }
-            if (item.getAsFile === undefined) {
+            if (item.getAsFile === undefined || item.getAsFile === null) {
                 continue;
             }
             blob = item.getAsFile();
@@ -47,6 +47,29 @@
             blobs.push(blob);
         }
         return blobs;
+    };
+
+    /**
+     * __validBrowser
+     * 
+     * @access  private
+     * @param   jQuery event
+     * @return  Boolean
+     */
+    var __validBrowser = function(event) {
+        var originalEvent = event.originalEvent;
+        if (originalEvent === undefined || originalEvent === null) {
+            return false;
+        }
+        var clipboardData = originalEvent.clipboardData;
+        if (clipboardData === undefined || clipboardData === null) {
+            return false;
+        }
+        var items = clipboardData.items;
+        if (items === undefined || items === null) {
+            return false;
+        }
+        return true;
     };
 
     /**
@@ -79,10 +102,12 @@
      */
     $('html').on({
         'paste': function(event) {
-            if (__validPaste(event) === true) {
-                var blobs = __getBlobs(event);
-                if (blobs.length > 0) {
-                    $(this).triggerHandler('custom/image/paste', [blobs]);
+            if (__validBrowser(event) === true) {
+                if (__validPaste(event) === true) {
+                    var blobs = __getBlobs(event);
+                    if (blobs.length > 0) {
+                        $(this).triggerHandler('custom/image/paste', [blobs]);
+                    }
                 }
             }
         }
