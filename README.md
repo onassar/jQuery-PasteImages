@@ -4,8 +4,8 @@ Pretty straightforward: just include the JS file, and then listen for the `custo
 
 ### Example
 ``` javascript
-$('html').on({
-    'custom/image/paste': function(event, blobs) {
+$(document).on({
+    'custom/paste/images': function(event, blobs) {
         console.log(blobs);
     }
 });
