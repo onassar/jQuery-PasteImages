@@ -30,16 +30,18 @@
      */
     var __getBlobs = function(event) {
         var items = event.originalEvent.clipboardData.items,
+            kind,
             index,
             items,
             blobs = [],
             blob;
         for (index in items) {
             item = items[index];
-            if (item.kind === undefined || item.kind === null) {
+            kind = item.kind;
+            if (kind === undefined || kind === null) {
                 continue;
             }
-            if (item.kind.toLowerCase() !== 'file') {
+            if (kind.toLowerCase() !== 'file') {
                 continue;
             }
             if (item.getAsFile === undefined || item.getAsFile === null) {
@@ -85,10 +87,11 @@
      * @return  Boolean
      */
     var __validPaste = function(event) {
-        if (event.target === undefined) {
+        var target = event.target;
+        if (target === undefined || target === null) {
             return true;
         }
-        var $target = $(event.target);
+        var $target = $(target);
         if ($target.is('input[type="text"]') === true) {
             return false;
         }
