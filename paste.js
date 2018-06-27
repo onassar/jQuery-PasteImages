@@ -92,10 +92,13 @@
             return true;
         }
         var $target = $(target);
-        if ($target.is('input[type="text"]') === true) {
+        if ($target.is('input[type="password"]') === true) {
             return false;
         }
-        if ($target.is('input[type="password"]') === true) {
+        if ($target.is('input[type="search"]') === true) {
+            return false;
+        }
+        if ($target.is('input[type="text"]') === true) {
             return false;
         }
         if ($target.is('textarea') === true) {
