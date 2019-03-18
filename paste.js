@@ -123,8 +123,8 @@
                 if (__validPaste(event) === true) {
                     var blobs = __getBlobs(event);
                     if (blobs.length > 0) {
-                        var eventType = 'custom/paste/images';
-                        $(document).triggerHandler(eventType, [blobs]);
+                        var eventName = 'custom/paste/images';
+                        $(document).triggerHandler(eventName, [blobs]);
                     }
                 }
             }
