@@ -98,6 +98,9 @@
         if ($target.is('input[type="email"]') === true) {
             return false;
         }
+        if ($target.is('input[type="number"]') === true) {
+            return false;
+        }
         if ($target.is('input[type="password"]') === true) {
             return false;
         }
